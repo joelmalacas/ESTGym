@@ -51,7 +51,7 @@ public class Arranque {
 	 * @return os icones com a imagem livre e ocupado
 	 */
 	private static ImageIcon[] getIcons(String nome) {
-		String pasta = "art/";
+		String pasta = "/home/joelmalacas/Documents/ESTGym/art/";
 		ImageIcon icons[] = { new ImageIcon(pasta + nome + "_livre.png"),
 				new ImageIcon(pasta + nome + "_ocupado.png") };
 		return icons;

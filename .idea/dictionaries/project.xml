@@ -2,6 +2,8 @@
   <dictionary name="project">
     <words>
       <w>Arranque</w>
+      <w>Equipamento</w>
+      <w>duracao</w>
     </words>
   </dictionary>
 </component>
