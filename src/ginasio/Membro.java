@@ -17,7 +17,7 @@ public class Membro {
         this.nome = Validator.requireNonBlank(nome);
     }
 
-    public boolean isDentro() {
+    public boolean estaDentro() {
         return dentro;
     }
     public String getNome() {
@@ -34,26 +34,39 @@ public class Membro {
         dentro = false;
     }
 
-    //TODO FALTA IMPLEMENTAR PLANO
     public void adicionarPlano(Plano plano) {
+        Objects.requireNonNull(plano);
 
+        for (Contrato contrato : plano.getContratos()) {
+            adicionarContrato(contrato);
+        }
     }
-    public Optional<Contrato> getContrato(Servico servico) {
-        return Optional.empty();
+    public void adicionarContrato(Contrato contrato) {
+        Objects.requireNonNull(contrato);
+        contratos.put(contrato.getServico(), contrato);
     }
     public boolean temContrato(Servico servico) {
-        return false;
+        return contratos.containsKey(servico);
+    }
+    public Optional<Contrato> getContrato(Servico servico) {
+        return Optional.ofNullable(contratos.get(servico));
     }
     public Map<Servico, Contrato> getContratos() {
         return Collections.unmodifiableMap(contratos);
     }
-
-    //TODO FALTA IMPLEMENTAR REGISTOS
-    public void registarUso() {}
+    public void registarUso(Registo registo) {
+        registos.add(Objects.requireNonNull(registo));
+    }
     public List<Registo> getRegistos() {
         return Collections.unmodifiableList(registos);
     }
     public List<Registo> getRegistos(Servico servico) {
-        return List.of();
+        List<Registo> res = new ArrayList<>();
+        for (Registo registo : registos) {
+            if (registo.getServico().equals(servico)) {
+                res.add(registo);
+            }
+        }
+        return res;
     }
 }
