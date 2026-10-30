@@ -1,6 +1,7 @@
 package regras;
 
 import ginasio.Registo;
+import ginasio.RegraAcesso;
 import pds.util.Validator;
 
 import java.time.Duration;
@@ -8,7 +9,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
-public class DuchePlano implements RegraAcesso{
+public class DuchePlano implements RegraAcesso {
 
     private enum Pedido { EXTRA, NOVO, NEGADO}
 

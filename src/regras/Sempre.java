@@ -1,6 +1,7 @@
 package regras;
 
 import ginasio.Registo;
+import ginasio.RegraAcesso;
 
 import java.time.LocalDateTime;
 import java.util.List;

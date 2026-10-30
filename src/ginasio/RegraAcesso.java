@@ -1,6 +1,4 @@
-package regras;
-
-import ginasio.Registo;
+package ginasio;
 
 import java.time.Duration;
 import java.time.LocalDateTime;

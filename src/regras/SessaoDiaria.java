@@ -1,12 +1,13 @@
 package regras;
 
 import ginasio.Registo;
+import ginasio.RegraAcesso;
 import pds.util.Validator;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class SessaoDiaria implements RegraAcesso{
+public class SessaoDiaria implements RegraAcesso {
 
     private final int minutos, dias;
 
