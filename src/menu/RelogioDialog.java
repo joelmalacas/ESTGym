@@ -15,7 +15,7 @@ import java.time.format.DateTimeFormatter;
 public class RelogioDialog extends JDialog {
     private JLabel labelRelogio;
     private Timer timer;
-    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/mm/yyyy  HH:mm:ss");
+    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy  HH:mm:ss");
     private RelogioSimulado relogio;
 
     public RelogioDialog(Frame owner, Point pos) {
