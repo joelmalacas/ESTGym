@@ -5,8 +5,8 @@ import java.util.*;
 
 public class Plano {
 
-    private String nome;
-    private Map<Servico, Contrato> contratos = new LinkedHashMap<>();
+    private final String nome;
+    private final Map<Servico, Contrato> contratos = new LinkedHashMap<>();
 
     public Plano(String n) {
         this.nome = Validator.requireNonBlankTrimmed(n);

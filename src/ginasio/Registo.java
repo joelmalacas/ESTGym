@@ -5,9 +5,9 @@ import java.util.Objects;
 
 public class Registo {
 
-    private Servico servico;
-    private Equipamento equipamento;
-    private LocalDateTime dataHora;
+    private final Servico servico;
+    private final Equipamento equipamento;
+    private final LocalDateTime dataHora;
 
     public Registo(Servico s, Equipamento eq, LocalDateTime dh) {
         this.servico = Objects.requireNonNull(s);
