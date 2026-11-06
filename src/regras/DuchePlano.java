@@ -26,7 +26,6 @@ public class DuchePlano implements RegraAcesso {
 
     @Override
     public boolean permite(List<Registo> usos, LocalDateTime agora) {
-        //TODO METODO (DEPOIS APAGAR FUI EU QUE ESCREVI)
         return classificar(usos, agora) != Pedido.NEGADO;
     }
 
