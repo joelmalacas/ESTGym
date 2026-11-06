@@ -9,10 +9,8 @@ import java.util.Objects;
 
 public class PersonalTrainer extends Equipamento {
 
-    public PersonalTrainer(String nome, Servico servico, boolean exigeEntrada, Duration duracao, Membro membro) {
-        //TODO TENHO QUE ACERTAR ESTE CONSTRUTOR
-        Objects.requireNonNull(membro);
-
+    public PersonalTrainer(String nome, Servico servico, boolean exigeEntrada, Duration duracao) {
+        //TODO TENHO QUE VERIFICAR ESTE CONSTRUTOR
         super(nome, servico, exigeEntrada, duracao);
     }
 }
