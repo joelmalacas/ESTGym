@@ -1,6 +1,8 @@
 package ginasio;
 
 import pds.util.Validator;
+
+import java.time.Duration;
 import java.util.Objects;
 
 public abstract class Equipamento {
@@ -8,13 +10,13 @@ public abstract class Equipamento {
     private final Servico servico;
     private final boolean exigeEntrada;
     private boolean ocupado;
-    private final int duracao;
+    private final Duration duracao;
 
-    protected Equipamento(String nome, Servico servico, boolean exigeEntrada, int duracao) {
+    protected Equipamento(String nome, Servico servico, boolean exigeEntrada, Duration duracao) {
         this.nome = Validator.requireNonBlank(nome);
         this.servico = Objects.requireNonNull(servico);
         this.exigeEntrada = exigeEntrada;
-        this.duracao = Validator.requirePositiveOrZero(duracao);
+        this.duracao = Objects.requireNonNull(duracao);
     }
 
     public String getNome() {
@@ -29,7 +31,7 @@ public abstract class Equipamento {
     public boolean isOcupado() {
         return ocupado;
     }
-    public int getDuracao() {
+    public Duration getDuracao() {
         return duracao;
     }
 
