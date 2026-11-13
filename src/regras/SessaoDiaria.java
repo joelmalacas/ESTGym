@@ -13,16 +13,20 @@ import java.util.Objects;
 
 public class SessaoDiaria implements RegraAcesso {
 
-    private final int minutos, dias;
+    private final Duration duracao;
+    private final int dias;
 
-    public SessaoDiaria(int minutos, int dias) {
-        this.minutos = Validator.requirePositiveOrZero(minutos);
+    public SessaoDiaria(Duration duracao, int dias) {
+        Objects.requireNonNull(duracao);
+        if (duracao.isNegative()) {
+            throw new IllegalArgumentException("A duração não pode ser negativa");
+        }
+        this.duracao = duracao;
         this.dias = Validator.requirePositiveOrZero(dias);
     }
 
     @Override
     public boolean permite(List<Registo> usos, LocalDateTime agora) {
-        //TODO METODO (DEPOIS APAGAR FUI EU QUE ESCREVI)
         Objects.requireNonNull(usos);
         Objects.requireNonNull(agora);
 
@@ -52,11 +56,12 @@ public class SessaoDiaria implements RegraAcesso {
 
     @Override
     public Duration duracao(List<Registo> usos, LocalDateTime agora, Duration duracaoEquipamento) {
-        return Duration.ofMinutes(minutos);
+        return duracao;
     }
 
     @Override
     public String toString() {
+        long minutos = duracao.toMinutes();
         String sessao = (minutos % 60 == 0 && minutos > 0)
                 ? (minutos / 60) + (minutos == 60 ? " hora" : " horas")
                 : minutos + " minutos";
