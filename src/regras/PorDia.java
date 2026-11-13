@@ -4,6 +4,7 @@ import ginasio.Registo;
 import ginasio.RegraAcesso;
 import pds.util.Validator;
 
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -11,11 +12,12 @@ import java.util.Objects;
 
 public class PorDia implements RegraAcesso {
 
-    private final int vezes, intervalo;
+    private final int vezes;
+    private final Duration intervalo;
 
-    public PorDia(int vezes, int intervalo) {
+    public PorDia(int vezes, Duration intervalo) {
         this.vezes = Validator.requirePositiveOrZero(vezes);
-        this.intervalo = Validator.requirePositiveOrZero(intervalo);
+        this.intervalo = Objects.requireNonNull(intervalo);
     }
 
     @Override
@@ -41,18 +43,18 @@ public class PorDia implements RegraAcesso {
     }
 
     private boolean respeitaIntervalo(List<Registo> usos, LocalDateTime agora) {
-        if (intervalo == 0 || usos.isEmpty()) {
+        if (intervalo == Duration.ZERO || usos.isEmpty()) {
             return true;
         }
 
         LocalDateTime ultimoUso = usos.get(usos.size() - 1).getDataHora();
 
-        return !agora.isBefore(ultimoUso.plusMinutes(intervalo));
+        return !agora.isBefore(ultimoUso.plusMinutes(intervalo.toMinutes()));
     }
 
     @Override
     public String toString() {
         String texto = vezes + (vezes == 1 ? " vez" : " vezes") + " por dia";
-        return intervalo == 0 ? texto : texto + ", " + intervalo + " minutos entre elas";
+        return intervalo == Duration.ZERO ? texto : texto + ", " + intervalo + " minutos entre elas";
     }
 }
