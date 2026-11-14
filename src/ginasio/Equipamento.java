@@ -2,9 +2,7 @@ package ginasio;
 
 import pds.util.RelogioSimulado;
 import pds.util.Validator;
-
 import java.time.Duration;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -56,7 +54,7 @@ public abstract class Equipamento {
     public void usar(Membro m) {
         ocupar();
         fimUso = RelogioSimulado.getTempoAtual().plus(duracao);
-        m.registarUso(new Registo(servico, this, RelogioSimulado.getTempoAtual())); // ajusta ao teu Registo
+        m.registarUso(new Registo(servico, this, RelogioSimulado.getTempoAtual()));
     }
 
     protected void ocupar() {ocupado = true;}

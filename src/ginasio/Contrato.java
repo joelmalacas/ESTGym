@@ -1,6 +1,7 @@
 package ginasio;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 public class Contrato {
@@ -17,8 +18,8 @@ public class Contrato {
         Objects.requireNonNull(membro);
         Objects.requireNonNull(agora);
 
-        //TODO filtra os registos do serviço e chama a regra (DEPOIS DE FEITO APAGA-ME)
-        return false;
+        List<Registo> registosDoServico = membro.getRegistos(servico);
+        return regra.permite(registosDoServico, agora);
     }
 
     public Servico getServico() {
@@ -37,9 +38,6 @@ public class Contrato {
 
     @Override
     public String toString() {
-        return "Contrato{" +
-                "servico=" + servico +
-                ", regra=" + regra +
-                '}';
+        return regra.toString();
     }
 }

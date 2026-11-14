@@ -71,7 +71,7 @@ public class JanelaGinasio extends JFrame {
 
     /** Carrega a lista de membros. */
     private void carregarMembros() {
-        // TODO: obter os ids dos membros e adicioná-los ao modelo
+        // TODO FEITO: obter os ids dos membros e adicioná-los ao modelo
         for (Membro m : membros) {
             modeloMembros.addElement(m.getId());
         }
@@ -84,7 +84,7 @@ public class JanelaGinasio extends JFrame {
      * @param iconesPronto array com os icones para livre ([0]) e ocupado ([1])
      */
     public void addEquipamento(int id, Icon icones[]) {
-        // TODO colocar as informações certas
+        // TODO FEITO colocar as informações certas
         String nome = getEquipNomeById(id);
         boolean disponivel = true;
 
@@ -160,16 +160,16 @@ public class JanelaGinasio extends JFrame {
      * @param source        o botão que foi pressionado
      */
     protected void usarEquipamento(int equipamentoId, JButton source) {
-        // TODO: pedir qual o membro que está a tentar usar o equipamento
+        // TODO FEITO: pedir qual o membro que está a tentar usar o equipamento
         Membro m = (Membro) pedirMembro(source);
         if (m == null)
             return;
 
-        // TODO ver se pode usar o equipamento
+        // TODO FEITO ver se pode usar o equipamento
         Equipamento equip = getEquipamento(equipamentoId);
 
         if (equip.podeUsar(m)) {
-            // TODO se sim usar
+            // TODO FEITO se sim usar
             equip.usar(m);
             botoes.get(equipamentoId).setEnabled(false);
         } else {
@@ -195,7 +195,7 @@ public class JanelaGinasio extends JFrame {
                 return null;
             int id = Integer.parseInt(code);
 
-            // TODO ver qual o membro com o id introduzido, se algum
+            // TODO FEITO ver qual o membro com o id introduzido, se algum
             m = getMembro(id);
 
         } catch (Exception e) {
@@ -218,7 +218,7 @@ public class JanelaGinasio extends JFrame {
                 boolean cellHasFocus) {
             int id = (int) value;
 
-            // TODO colocar aqui o nome do membro com o id indicado
+            // TODO FEITO colocar aqui o nome do membro com o id indicado
             String nome = getNomeMembroById(id);
 
             return super.getListCellRendererComponent(list, nome, index, isSelected, cellHasFocus);
@@ -242,7 +242,7 @@ public class JanelaGinasio extends JFrame {
         if (membro == null) {
             return;
         }
-        // TODO: para cada serviço contratado indicar o nome do serviço e a descrição do
+        // TODO FEITO: para cada serviço contratado indicar o nome do serviço e a descrição do
         // respetivo contrato
         for (Contrato c : membro.getContratos().values()) {
             String nome = c.getServico().getNome();
@@ -251,7 +251,7 @@ public class JanelaGinasio extends JFrame {
             modeloServicos.addRow(new String[] { nome, descricao });
         }
 
-        // TODO Para cada registo indicar o nome do serviço, a descrição do equipamento
+        // TODO FEITO Para cada registo indicar o nome do serviço, a descrição do equipamento
         // e a data e hora de uso
         for (Registo r : membro.getRegistos()) {
             String nome = r.getServico().getNome();

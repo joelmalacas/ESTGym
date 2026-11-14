@@ -192,14 +192,23 @@ public class Arranque {
 
 			// TODO FEITO adicionar os equipamentos ao simulador (ids apenas exemplificativos)
 			main.addEquipamento(1, getIcons("porta"));
+			main.addEquipamento(2, getIcons("porta"));
 			main.addEquipamento(50, getIcons("bebida"));
 			main.addEquipamento(30, getIcons("duche"));
-			main.addEquipamento(13, getIcons("pt"));
-			main.addEquipamento(14, getIcons("nutricionista"));
-			main.addEquipamento(15, getIcons("poltrona"));
-			main.addEquipamento(16, getIcons("aula"));
-			main.addEquipamento(17, getIcons("fisica"));
-			main.addEquipamento(18, getIcons("porta_piscina"));
+			main.addEquipamento(31, getIcons("duche"));
+			main.addEquipamento(32, getIcons("duche"));
+			main.addEquipamento(100, getIcons("pt"));
+			main.addEquipamento(101, getIcons("pt"));
+			main.addEquipamento(200, getIcons("nutricionista"));
+			main.addEquipamento(201, getIcons("nutricionista"));
+			main.addEquipamento(700, getIcons("poltrona"));
+			main.addEquipamento(701, getIcons("poltrona"));
+			main.addEquipamento(10, getIcons("aula"));
+			main.addEquipamento(11, getIcons("aula"));
+			main.addEquipamento(12, getIcons("aula"));
+			main.addEquipamento(13, getIcons("aula"));
+			main.addEquipamento(500, getIcons("fisica"));
+			main.addEquipamento(3, getIcons("porta_piscina"));
 
 			main.setVisible(true);
 			RelogioDialog relog = new RelogioDialog(main, new Point(200, 20));
