@@ -9,8 +9,8 @@ import java.time.LocalDateTime;
 
 public class Duche  extends Equipamento {
 
-    public Duche(String nome, Servico servico, boolean exigeEntrada) {
-        super(nome, servico, exigeEntrada, Duration.ZERO);
+    public Duche(int id, String nome, Servico servico, boolean exigeEntrada) {
+        super(id, nome, servico, exigeEntrada, Duration.ZERO);
     }
 
     public Duration duracaoPara(Membro membro, LocalDateTime agora) {

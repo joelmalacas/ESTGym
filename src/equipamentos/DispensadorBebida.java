@@ -7,7 +7,7 @@ import java.time.Duration;
 
 public class DispensadorBebida extends Equipamento {
 
-    public DispensadorBebida(String nome, Servico servico, boolean exigeEntrada, Duration duracao) {
-        super(nome, servico, exigeEntrada, duracao);
+    public DispensadorBebida(int id, String nome, Servico servico, boolean exigeEntrada, Duration duracao) {
+        super(id, nome, servico, exigeEntrada, duracao);
     }
 }

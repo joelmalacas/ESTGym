@@ -7,8 +7,8 @@ import java.time.Duration;
 
 public class Nutricionista extends Equipamento {
 
-    public Nutricionista(String nome, Servico servico, boolean exigeEntrada, Duration duracao) {
+    public Nutricionista(int id,String nome, Servico servico, boolean exigeEntrada, Duration duracao) {
         //TODO TENHO QUE VERIFICAR
-        super(nome, servico, exigeEntrada,duracao);
+        super(id, nome, servico, exigeEntrada,duracao);
     }
 }

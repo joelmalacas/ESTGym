@@ -6,7 +6,7 @@ import java.time.Duration;
 
 public class PortaPiscina extends Porta{
 
-    public PortaPiscina(String nome, Servico servico, boolean exigeEntrada , Duration duracao) {
-        super(nome, servico, exigeEntrada, duracao);
+    public PortaPiscina(int id, String nome, Servico servico, boolean exigeEntrada , Duration duracao) {
+        super(id, nome, servico, exigeEntrada, duracao);
     }
 }

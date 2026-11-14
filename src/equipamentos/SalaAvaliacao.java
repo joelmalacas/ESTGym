@@ -7,8 +7,8 @@ import java.time.Duration;
 
 public class SalaAvaliacao extends Equipamento {
 
-    public SalaAvaliacao(String nome, Servico servico, boolean exigeEntrada, Duration duracao) {
+    public SalaAvaliacao(int id, String nome, Servico servico, boolean exigeEntrada, Duration duracao) {
         //TODO FALTA VERIFICAR O CONSTRUTOR
-        super(nome, servico, true, duracao);
+        super(id, nome, servico, true, duracao);
     }
 }

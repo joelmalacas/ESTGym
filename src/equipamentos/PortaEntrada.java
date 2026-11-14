@@ -6,7 +6,7 @@ import java.time.Duration;
 
 public class PortaEntrada extends Porta{
 
-    public PortaEntrada(String nome, Servico servico, Duration duracao) {
-        super(nome, servico, false, duracao);
+    public PortaEntrada(int id, String nome, Servico servico, Duration duracao) {
+        super(id, nome, servico, false, duracao);
     }
 }

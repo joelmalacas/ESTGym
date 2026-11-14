@@ -36,34 +36,34 @@ public class teste {
         // ---------------------------------------------------------------
         // 2. EQUIPAMENTOS (exigem entrada prévia, exceto a porta de entrada)
         // ---------------------------------------------------------------
-        PortaEntrada portaEntrada = new PortaEntrada("Porta de entrada", entrada, Duration.ofSeconds(3));
-        PortaSaida portaSaida = new PortaSaida("Porta de saída", saida, Duration.ofSeconds(3));
-        PortaPiscina portaPiscina = new PortaPiscina("Entrada da piscina", piscina, true, Duration.ofSeconds(3));
+        PortaEntrada portaEntrada = new PortaEntrada(1,"Porta de entrada", entrada, Duration.ofSeconds(3));
+        PortaSaida portaSaida = new PortaSaida(2,"Porta de saída", saida, Duration.ofSeconds(3));
+        PortaPiscina portaPiscina = new PortaPiscina(3,"Entrada da piscina", piscina, true, Duration.ofSeconds(3));
 
         // (nome, servico, exigeEntrada, duração, capacidade)
-        Aula step       = new Aula("Step",        aula1, true, Duration.ofMinutes(30), 30); // nível 1
-        Aula cycling    = new Aula("Cycling",     aula1, true, Duration.ofMinutes(50), 25); // nível 1
-        Aula bodyCombat = new Aula("Body combat", aula2, true, Duration.ofMinutes(30), 20); // nível 2
-        Aula ioga       = new Aula("Ioga",        aula2, true, Duration.ofMinutes(60), 15); // nível 2
+        Aula step       = new Aula(10,"Step",        aula1, true, Duration.ofMinutes(30), 30); // nível 1
+        Aula cycling    = new Aula(11,"Cycling",     aula1, true, Duration.ofMinutes(50), 25); // nível 1
+        Aula bodyCombat = new Aula(12,"Body combat", aula2, true, Duration.ofMinutes(30), 20); // nível 2
+        Aula ioga       = new Aula(13,"Ioga",        aula2, true, Duration.ofMinutes(60), 15); // nível 2
 
-        DispensadorBebida dispensador = new DispensadorBebida("Dispensador de bebida", bebida, true, Duration.ofSeconds(20));
+        DispensadorBebida dispensador = new DispensadorBebida(50,"Dispensador de bebida", bebida, true, Duration.ofSeconds(20));
 
         // Duches: a duração vem do plano
-        Duche duche1 = new Duche("Duche 1", duche, true);
-        Duche duche2 = new Duche("Duche 2", duche, true);
-        Duche duche3 = new Duche("Duche 3", duche, true);
+        Duche duche1 = new Duche(30,"Duche 1", duche, true);
+        Duche duche2 = new Duche(31,"Duche 2", duche, true);
+        Duche duche3 = new Duche(32,"Duche 3", duche, true);
 
         // Pessoas tratadas como equipamentos: a duração vem do plano
-        PersonalTrainer manel = new PersonalTrainer("Manel Mandão", personal, true, Duration.ZERO);
-        PersonalTrainer rita  = new PersonalTrainer("Rita Rígida",  personal, true, Duration.ZERO);
+        PersonalTrainer manel = new PersonalTrainer(100,"Manel Mandão", personal, true, Duration.ZERO);
+        PersonalTrainer rita  = new PersonalTrainer(101,"Rita Rígida",  personal, true, Duration.ZERO);
 
-        Nutricionista carlos = new Nutricionista("Carlos Comilão", nutricao, true, Duration.ofMinutes(30));
-        Nutricionista marta  = new Nutricionista("Marta Magra",    nutricao, true, Duration.ofMinutes(30));
+        Nutricionista carlos = new Nutricionista(200,"Carlos Comilão", nutricao, true, Duration.ofMinutes(30));
+        Nutricionista marta  = new Nutricionista(201,"Marta Magra",    nutricao, true, Duration.ofMinutes(30));
 
-        SalaAvaliacao salaAvaliacao = new SalaAvaliacao("Sala de avaliação", avaliacao, true, Duration.ofMinutes(20));
+        SalaAvaliacao salaAvaliacao = new SalaAvaliacao(500,"Sala de avaliação", avaliacao, true, Duration.ofMinutes(20));
 
-        CadeiraMassagem cadeira1 = new CadeiraMassagem("Cadeira de massagem 1", massagem, true, Duration.ofMinutes(10));
-        CadeiraMassagem cadeira2 = new CadeiraMassagem("Cadeira de massagem 2", massagem, true, Duration.ofMinutes(10));
+        CadeiraMassagem cadeira1 = new CadeiraMassagem(700,"Cadeira de massagem 1", massagem, true, Duration.ofMinutes(10));
+        CadeiraMassagem cadeira2 = new CadeiraMassagem(701,"Cadeira de massagem 2", massagem, true, Duration.ofMinutes(10));
 
         // ---------------------------------------------------------------
         // 3. MEMBROS E PLANOS (valores inventados, regras da secção 6)

@@ -17,8 +17,8 @@ public class Aula extends Equipamento {
     private final Set<Membro> inscritos = new HashSet<>();
     private LocalDateTime inicio;
 
-    public Aula(String nome, Servico servico, boolean exigeEntrada, Duration duracao, int capacidade) {
-        super(nome, servico, exigeEntrada, duracao);
+    public Aula(int id, String nome, Servico servico, boolean exigeEntrada, Duration duracao, int capacidade) {
+        super(id, nome, servico, exigeEntrada, duracao);
         this.capacidade = Validator.requirePositive(capacidade);
     }
 

@@ -26,9 +26,6 @@ public class Servico {
 
     @Override
     public String toString() {
-        return "Servico{" +
-                "nome='" + nome + '\'' +
-                ", duracao=" + duracao +
-                '}';
+        return nome;
     }
 }

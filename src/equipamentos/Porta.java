@@ -7,7 +7,7 @@ import java.time.Duration;
 
 public abstract class Porta extends Equipamento {
 
-    protected Porta(String nome, Servico servico, boolean exigeEntrada, Duration duracao) {
-        super(nome, servico, exigeEntrada, duracao);
+    protected Porta(int id, String nome, Servico servico, boolean exigeEntrada, Duration duracao) {
+        super(id, nome, servico, exigeEntrada, duracao);
     }
 }

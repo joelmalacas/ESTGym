@@ -7,7 +7,7 @@ import java.time.Duration;
 
 public class CadeiraMassagem extends Equipamento {
 
-    public CadeiraMassagem(String nome, Servico servico, boolean exigeEntrada, Duration duracao) {
-        super(nome, servico, exigeEntrada, duracao);
+    public CadeiraMassagem(int id, String nome, Servico servico, boolean exigeEntrada, Duration duracao) {
+        super(id, nome, servico, exigeEntrada, duracao);
     }
 }

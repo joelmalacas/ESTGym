@@ -3,15 +3,14 @@ package menu;
 import java.awt.Point;
 import java.time.Duration;
 import java.time.LocalDateTime;
-
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import javax.swing.ImageIcon;
 import javax.swing.SwingUtilities;
 
 import equipamentos.*;
-import ginasio.Contrato;
-import ginasio.Membro;
-import ginasio.Plano;
-import ginasio.Servico;
+import ginasio.*;
 import pds.util.RelogioSimulado;
 import regras.*;
 
@@ -22,7 +21,9 @@ public class Arranque {
 		RelogioSimulado relogio = RelogioSimulado.getRelogioSimulado();
 		relogio.setTempoAtual(LocalDateTime.now());
 
-		// TODO criar os serviços
+		// TODO FEITO criar os serviços
+		ArrayList<Servico> service = new ArrayList<>();
+
 		Servico entrada = new Servico("Entrada");
 		Servico saida = new Servico("Saída");
 		Servico aula1 = new Servico("Aula Nível 1");
@@ -35,36 +36,57 @@ public class Arranque {
 		Servico avaliacao = new Servico("Avaliação Física");
 		Servico massagem = new Servico("Cadeira de massagem");
 
-		// TODO criar os equipamentos
-		PortaEntrada portaEntrada = new PortaEntrada("Porta Entrada", entrada, Duration.ofSeconds(3));
-		PortaSaida portaSaida = new PortaSaida("Porta Saída", saida, Duration.ofSeconds(3));
-		PortaPiscina portaPiscina = new PortaPiscina("Porta Piscina", piscina, true, Duration.ofSeconds(3));
+		service.add(entrada);
+		service.add(saida);
+		service.add(aula1);
+		service.add(aula2);
+		service.add(piscina);
+		service.add(duche);
+		service.add(bebida);
+		service.add(personal);
+		service.add(nutricao);
+		service.add(avaliacao);
+		service.add(massagem);
 
-		Aula step = new Aula("Aula de Step", aula1, true, Duration.ofMinutes(30), 30);
-		Aula cycling = new Aula("Aula de Cycling", aula1, true, Duration.ofMinutes(50), 25);
-		Aula bodyCombat = new Aula("Aula de Body Combat", aula2, true, Duration.ofMinutes(30), 20);
-		Aula ioga = new Aula("Aula de Ioga", aula2,true, Duration.ofMinutes(60), 15);
+		// TODO FEITO criar os equipamentos
+		ArrayList<Equipamento> equip = new ArrayList<>();
 
-		DispensadorBebida dispensador = new DispensadorBebida("Dispensador de Bebida", bebida, true, Duration.ofSeconds(20));
+		PortaEntrada portaEntrada = new PortaEntrada(1,"Porta Entrada", entrada, Duration.ofSeconds(3));
+		PortaSaida portaSaida = new PortaSaida(2,"Porta Saída", saida, Duration.ofSeconds(3));
+		PortaPiscina portaPiscina = new PortaPiscina(3, "Porta Piscina", piscina, true, Duration.ofSeconds(3));
 
-		Duche duche1 = new Duche("Duche 1", duche, true);
-		Duche duche2 = new Duche("Duche 2", duche, true);
-		Duche duche3 = new Duche("Duche 3", duche, true);
+		Aula step = new Aula(10, "Aula de Step", aula1, true, Duration.ofMinutes(30), 30);
+		Aula cycling = new Aula(11, "Aula de Cycling", aula1, true, Duration.ofMinutes(50), 25);
+		Aula bodyCombat = new Aula(12, "Aula de Body Combat", aula2, true, Duration.ofMinutes(30), 20);
+		Aula ioga = new Aula(13, "Aula de Ioga", aula2,true, Duration.ofMinutes(60), 15);
 
-		PersonalTrainer manel = new PersonalTrainer("Manel Mandão", personal, true, Duration.ZERO);
-        PersonalTrainer rita  = new PersonalTrainer("Rita Rígida",  personal, true, Duration.ZERO);
+		DispensadorBebida dispensador = new DispensadorBebida(50, "Dispensador de Bebida", bebida, true, Duration.ofSeconds(20));
 
-		Nutricionista carlos = new Nutricionista("Carlos Comilão", nutricao, true, Duration.ofMinutes(30));
-        Nutricionista marta  = new Nutricionista("Marta Magra",    nutricao, true, Duration.ofMinutes(30));
+		Duche duche1 = new Duche(30,"Duche 1", duche, true);
+		Duche duche2 = new Duche(31,"Duche 2", duche, true);
+		Duche duche3 = new Duche(32,"Duche 3", duche, true);
 
-		SalaAvaliacao salaAvaliacao = new SalaAvaliacao("Sala de avaliação", avaliacao, true, Duration.ofMinutes(20));
+		PersonalTrainer manel = new PersonalTrainer(100, "Manel Mandão", personal, true, Duration.ZERO);
+        PersonalTrainer rita  = new PersonalTrainer(101, "Rita Rígida",  personal, true, Duration.ZERO);
 
-        CadeiraMassagem cadeira1 = new CadeiraMassagem("Cadeira de massagem 1", massagem, true, Duration.ofMinutes(10));
-        CadeiraMassagem cadeira2 = new CadeiraMassagem("Cadeira de massagem 2", massagem, true, Duration.ofMinutes(10));
+		Nutricionista carlos = new Nutricionista(200, "Carlos Comilão", nutricao, true, Duration.ofMinutes(30));
+        Nutricionista marta  = new Nutricionista(201, "Marta Magra",    nutricao, true, Duration.ofMinutes(30));
 
+		SalaAvaliacao salaAvaliacao = new SalaAvaliacao(500, "Sala de avaliação", avaliacao, true, Duration.ofMinutes(20));
 
-		// TODO criar os membros
+        CadeiraMassagem cadeira1 = new CadeiraMassagem(700,"Cadeira de massagem 1", massagem, true, Duration.ofMinutes(10));
+        CadeiraMassagem cadeira2 = new CadeiraMassagem(701, "Cadeira de massagem 2", massagem, true, Duration.ofMinutes(10));
 
+		Equipamento[] arrEquip = {
+				portaEntrada, portaSaida, portaPiscina, step, cycling, bodyCombat, ioga,
+				dispensador, duche1, duche2, duche3, manel, rita, carlos, marta, salaAvaliacao,
+				cadeira1, cadeira2
+		};
+
+        equip.addAll(Arrays.asList(arrEquip));
+
+		// TODO FEITO criar os membros
+		ArrayList<Membro> membros = new ArrayList<>();
 		Membro m1 = new Membro(1, "Vítor Virtual");
 		Membro m2 = new Membro(2, "Iris Irreal");
 		Membro m3 = new Membro(3, "Inês Inexistente");
@@ -72,7 +94,15 @@ public class Arranque {
 		Membro m5 = new Membro(5, "Diogo Digital");
 		Membro m6 = new Membro(6, "Beatriz Bytes");
 
-		// TODO criar os planos para cada membro
+		membros.add(m1);
+		membros.add(m2);
+		membros.add(m3);
+		membros.add(m4);
+		membros.add(m5);
+		membros.add(m6);
+
+		// TODO FEITO criar os planos para cada membro
+		ArrayList<Plano> plan = new ArrayList<>();
 
 		Plano p1 = new Plano("vítor");
 		p1.AdicionarContratos(new Contrato(entrada,   new PorSemana(3, Duration.ofHours(1))));
@@ -154,13 +184,16 @@ public class Arranque {
 		m6.adicionarPlano(p6);
 
 
-		SwingUtilities.invokeLater(() -> {
-			JanelaGinasio main = new JanelaGinasio();
+		Plano[] arrPlano = new Plano[]{p1, p2, p3, p4, p5, p6};
+        Collections.addAll(plan, arrPlano);
 
-			// TODO adicionar os equipamentos ao simulador (ids apenas exemplificativos)
-			main.addEquipamento(10, getIcons("porta"));
-			main.addEquipamento(11, getIcons("bebida"));
-			main.addEquipamento(12, getIcons("duche"));
+		SwingUtilities.invokeLater(() -> {
+			JanelaGinasio main = new JanelaGinasio(membros, equip, plan);
+
+			// TODO FEITO adicionar os equipamentos ao simulador (ids apenas exemplificativos)
+			main.addEquipamento(1, getIcons("porta"));
+			main.addEquipamento(50, getIcons("bebida"));
+			main.addEquipamento(30, getIcons("duche"));
 			main.addEquipamento(13, getIcons("pt"));
 			main.addEquipamento(14, getIcons("nutricionista"));
 			main.addEquipamento(15, getIcons("poltrona"));
@@ -182,7 +215,7 @@ public class Arranque {
 	 * @return os icones com a imagem livre e ocupado
 	 */
 	private static ImageIcon[] getIcons(String nome) {
-		String pasta = "/home/joelmalacas/Documents/ESTGym/art/";
+		String pasta = "art/";
 		ImageIcon icons[] = { new ImageIcon(pasta + nome + "_livre.png"),
 				new ImageIcon(pasta + nome + "_ocupado.png") };
 		return icons;
