@@ -70,7 +70,6 @@ public class Aula extends Equipamento {
         m.ocuparAte(agora.plus(restante));
     }
 
-    //Getters
     public int getCapacidade() {
         return capacidade;
     }
