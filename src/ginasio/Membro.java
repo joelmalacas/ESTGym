@@ -45,11 +45,9 @@ public class Membro {
 
     public void adicionarPlano(Plano plano) {
         Objects.requireNonNull(plano);
-
-        for (Contrato contrato : plano.getContratos()) {
-            adicionarContrato(contrato);
-        }
+        plano.getContratos().forEach(this::adicionarContrato);
     }
+
     public void adicionarContrato(Contrato contrato) {
         Objects.requireNonNull(contrato);
         contratos.put(contrato.getServico(), contrato);
@@ -70,12 +68,8 @@ public class Membro {
         return Collections.unmodifiableList(registos);
     }
     public List<Registo> getRegistos(Servico servico) {
-        List<Registo> res = new ArrayList<>();
-        for (Registo registo : registos) {
-            if (registo.getServico().equals(servico)) {
-                res.add(registo);
-            }
-        }
-        return res;
+        return registos.stream()
+                .filter(r -> r.getServico().equals(servico))
+                .toList();
     }
 }
