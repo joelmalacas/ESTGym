@@ -18,8 +18,7 @@ public class Contrato {
         Objects.requireNonNull(membro);
         Objects.requireNonNull(agora);
 
-        List<Registo> registosDoServico = membro.getRegistos(servico);
-        return regra.permite(registosDoServico, agora);
+        return regra.permite(membro.getRegistos(servico), agora);
     }
 
     public Servico getServico() {

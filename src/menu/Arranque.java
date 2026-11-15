@@ -36,17 +36,11 @@ public class Arranque {
 		Servico avaliacao = new Servico("Avaliação Física");
 		Servico massagem = new Servico("Cadeira de massagem");
 
-		service.add(entrada);
-		service.add(saida);
-		service.add(aula1);
-		service.add(aula2);
-		service.add(piscina);
-		service.add(duche);
-		service.add(bebida);
-		service.add(personal);
-		service.add(nutricao);
-		service.add(avaliacao);
-		service.add(massagem);
+		Servico[] serviceArray = {
+				entrada,saida,aula1, aula2, piscina, duche,bebida,personal,
+				nutricao,avaliacao,massagem
+		};
+		Collections.addAll(service, serviceArray);
 
 		// TODO FEITO criar os equipamentos
 		ArrayList<Equipamento> equip = new ArrayList<>();
@@ -72,7 +66,7 @@ public class Arranque {
 		Nutricionista carlos = new Nutricionista(200, "Carlos Comilão", nutricao, true, Duration.ofMinutes(30));
         Nutricionista marta  = new Nutricionista(201, "Marta Magra",    nutricao, true, Duration.ofMinutes(30));
 
-		SalaAvaliacao salaAvaliacao = new SalaAvaliacao(500, "Sala de avaliação", avaliacao, true, Duration.ofMinutes(20));
+		SalaAvaliacao salaAvaliacao = new SalaAvaliacao(500, "Sala de avaliação", avaliacao, Duration.ofMinutes(20));
 
         CadeiraMassagem cadeira1 = new CadeiraMassagem(700,"Cadeira de massagem 1", massagem, true, Duration.ofMinutes(10));
         CadeiraMassagem cadeira2 = new CadeiraMassagem(701, "Cadeira de massagem 2", massagem, true, Duration.ofMinutes(10));
@@ -82,8 +76,7 @@ public class Arranque {
 				dispensador, duche1, duche2, duche3, manel, rita, carlos, marta, salaAvaliacao,
 				cadeira1, cadeira2
 		};
-
-        equip.addAll(Arrays.asList(arrEquip));
+		Collections.addAll(equip, arrEquip);
 
 		// TODO FEITO criar os membros
 		ArrayList<Membro> membros = new ArrayList<>();
@@ -94,12 +87,8 @@ public class Arranque {
 		Membro m5 = new Membro(5, "Diogo Digital");
 		Membro m6 = new Membro(6, "Beatriz Bytes");
 
-		membros.add(m1);
-		membros.add(m2);
-		membros.add(m3);
-		membros.add(m4);
-		membros.add(m5);
-		membros.add(m6);
+		Membro[] mArray = {m1, m2, m3,m4, m5, m6};
+		Collections.addAll(membros, mArray);
 
 		// TODO FEITO criar os planos para cada membro
 		ArrayList<Plano> plan = new ArrayList<>();
@@ -116,7 +105,7 @@ public class Arranque {
 
 
 		Plano p2 = new Plano("iris");
-		p2.AdicionarContratos(new Contrato(entrada,   new PorSemana(3, Duration.ofMinutes(60))));
+		p2.AdicionarContratos(new Contrato(entrada,   new PorSemana(3)));
         p2.AdicionarContratos(new Contrato(saida,     new Sempre()));
         p2.AdicionarContratos(new Contrato(piscina,   new PorSemana(2, Duration.ofMinutes(45))));
         p2.AdicionarContratos(new Contrato(duche,     new DuchePlano(1, Duration.ofMinutes(5), Duration.ofMinutes(2))));
@@ -149,8 +138,7 @@ public class Arranque {
         p4.AdicionarContratos(new Contrato(personal,  new PorSemana(3, Duration.ofMinutes(45))));
         p4.AdicionarContratos(new Contrato(nutricao,  new Periodica(6)));
         p4.AdicionarContratos(new Contrato(avaliacao, new Periodica(3)));
-        p4.AdicionarContratos(new Contrato(massagem,  new PorSemana(3)));
-        p4.AdicionarContratos(new Contrato(massagem,  new PorDia(1, Duration.ofMinutes(10))));
+        p4.AdicionarContratos(new Contrato(massagem,  new SessaoDiaria(Duration.ofMinutes(10), 3)));
 		m4.adicionarPlano(p4);
 
 
@@ -164,8 +152,7 @@ public class Arranque {
         p5.AdicionarContratos(new Contrato(bebida,   new PorDia(4, Duration.ofMinutes(20))));
         p5.AdicionarContratos(new Contrato(nutricao, new Periodica(3)));
         p5.AdicionarContratos(new Contrato(avaliacao,new Periodica(3)));
-		p5.AdicionarContratos(new Contrato(massagem, new PorSemana(7)));
-        p5.AdicionarContratos(new Contrato(massagem, new PorDia(1, Duration.ofMinutes(10))));
+        p5.AdicionarContratos(new Contrato(massagem, new SessaoDiaria(Duration.ofMinutes(10), 7)));
 		m5.adicionarPlano(p5);
 
 
@@ -176,15 +163,13 @@ public class Arranque {
         p6.AdicionarContratos(new Contrato(aula2,     new Sempre()));
         p6.AdicionarContratos(new Contrato(duche,     new DuchePlano(2, Duration.ofMinutes(6), Duration.ofMinutes(3))));
         p6.AdicionarContratos(new Contrato(bebida,    new PorDia(4, Duration.ofMinutes(20))));
-        p6.AdicionarContratos(new Contrato(personal,  new PorDia(5, Duration.ofMinutes(60))));
+        p6.AdicionarContratos(new Contrato(personal,  new PorSemana(5, Duration.ofMinutes(60))));
         p6.AdicionarContratos(new Contrato(nutricao,  new Periodica(1)));
         p6.AdicionarContratos(new Contrato(avaliacao, new Periodica(1)));
-		p6.AdicionarContratos(new Contrato(massagem,  new PorSemana(3)));
-        p6.AdicionarContratos(new Contrato(massagem,  new PorDia(1, Duration.ofMinutes(10))));
+		p6.AdicionarContratos(new Contrato(massagem,  new SessaoDiaria(Duration.ofMinutes(10), 3)));
 		m6.adicionarPlano(p6);
 
-
-		Plano[] arrPlano = new Plano[]{p1, p2, p3, p4, p5, p6};
+		Plano[] arrPlano = {p1, p2, p3, p4, p5, p6};
         Collections.addAll(plan, arrPlano);
 
 		SwingUtilities.invokeLater(() -> {

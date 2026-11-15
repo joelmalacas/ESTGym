@@ -54,9 +54,9 @@ public class JanelaGinasio extends JFrame {
     private final PainelBotoes painelBotoes = new PainelBotoes();
     private final Map<Integer, JButton> botoes = new LinkedHashMap<>();
 
-    private ArrayList<Membro> membros = new ArrayList<>();
-    private ArrayList<Equipamento> equipamentos = new ArrayList<>();
-    private ArrayList<Plano> planos = new ArrayList<>();
+    private ArrayList<Membro> membros;
+    private ArrayList<Equipamento> equipamentos;
+    private ArrayList<Plano> planos;
 
     public JanelaGinasio(ArrayList<Membro> membros, ArrayList<Equipamento> equipamentos, ArrayList<Plano> planos) {
         super("ESTGym");
@@ -121,36 +121,28 @@ public class JanelaGinasio extends JFrame {
         painelBotoes.repaint();
     }
 
-    private String getEquipNomeById(int id) {
-        for (Equipamento equip : equipamentos) {
-            if (id == equip.getId())
-                return equip.getNome();
-        }
-        return "";
-    }
-
-    private String getNomeMembroById(int id) {
-        for (Membro m : membros) {
-            if (id == m.getId())
-                return m.getNome();
-        }
-        return "";
-    }
-
     private Membro getMembro(int id) {
-        for (Membro m : membros) {
-            if (id == m.getId())
-                return m;
-        }
-        return null;
+        return membros.stream()
+                .filter(m -> m.getId() == id)
+                .findFirst()
+                .orElse(null);
     }
 
     private Equipamento getEquipamento(int id) {
-        for (Equipamento equip : equipamentos) {
-            if (id == equip.getId())
-                return equip;
-        }
-        return null;
+        return equipamentos.stream()
+                .filter(e -> e.getId() == id)
+                .findFirst()
+                .orElse(null);
+    }
+
+    private String getEquipNomeById(int id) {
+        Equipamento e = getEquipamento(id);
+        return e != null ? e.getNome() : "";
+    }
+
+    private String getNomeMembroById(int id) {
+        Membro m = getMembro(id);
+        return m != null ? m.getNome() : "";
     }
 
     /**
@@ -171,13 +163,13 @@ public class JanelaGinasio extends JFrame {
         if (equip.podeUsar(m)) {
             // TODO FEITO se sim usar
             equip.usar(m);
+            atualizarBotoes();
             Integer selecionado = listaMembros.getSelectedValue();
             if (selecionado != null) {
                 atualizarTabelas(selecionado);
             }
             botoes.get(equipamentoId).setEnabled(false);
         } else {
-            // senão avisar que não pode usar
             JOptionPane.showMessageDialog(source, "Não pode usar este equipamento!", "Uso não autorizado",
                     JOptionPane.ERROR_MESSAGE);
         }
@@ -195,15 +187,16 @@ public class JanelaGinasio extends JFrame {
         try {
             String code = JOptionPane.showInputDialog(source, "Id do membro?");
 
-            if (code.isBlank())
+            if (code == null || code.isBlank())
                 return null;
-            int id = Integer.parseInt(code);
+            int id = Integer.parseInt(code.trim());
 
             // TODO FEITO ver qual o membro com o id introduzido, se algum
             m = getMembro(id);
 
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
             // em caso de erro podem ser enviadas várias exceções, este catch apanha todas
+            JOptionPane.showMessageDialog(source, "O id tem de ser um número inteiro");
         }
         // Se não existir (ou houver erro) avisar que não foi encontrado
         if (m == null)
@@ -274,10 +267,11 @@ public class JanelaGinasio extends JFrame {
             JButton botao = e.getValue();
 
             // TODO FEITO saber o estado e o nome do equipamento associado ao botão
-            boolean ocupado = false;
+            Equipamento equip = getEquipamento(equipamentoId);
+
             String nome = getEquipNomeById(equipamentoId);
 
-            if (!botao.isEnabled() && !ocupado) {
+            if (!botao.isEnabled() && !equip.isOcupado()) {
                 botao.setEnabled(true);
             }
             botao.setToolTipText(nome);

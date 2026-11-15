@@ -60,7 +60,7 @@ public class teste {
         Nutricionista carlos = new Nutricionista(200,"Carlos Comilão", nutricao, true, Duration.ofMinutes(30));
         Nutricionista marta  = new Nutricionista(201,"Marta Magra",    nutricao, true, Duration.ofMinutes(30));
 
-        SalaAvaliacao salaAvaliacao = new SalaAvaliacao(500,"Sala de avaliação", avaliacao, true, Duration.ofMinutes(20));
+        SalaAvaliacao salaAvaliacao = new SalaAvaliacao(500,"Sala de avaliação", avaliacao,  Duration.ofMinutes(20));
 
         CadeiraMassagem cadeira1 = new CadeiraMassagem(700,"Cadeira de massagem 1", massagem, true, Duration.ofMinutes(10));
         CadeiraMassagem cadeira2 = new CadeiraMassagem(701,"Cadeira de massagem 2", massagem, true, Duration.ofMinutes(10));
