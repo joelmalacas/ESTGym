@@ -2,7 +2,9 @@ package equipamentos;
 
 import ginasio.Equipamento;
 import ginasio.Membro;
+import ginasio.Registo;
 import ginasio.Servico;
+import pds.util.RelogioSimulado;
 import pds.util.Validator;
 
 import java.time.Duration;
@@ -35,7 +37,9 @@ public class Aula extends Equipamento {
     public Duration inscrever(Membro membro, LocalDateTime agora) {
         if (!podeInscrever(membro, agora))
             throw new IllegalArgumentException("Nao e possível inscrever " + membro.getNome());
-        Objects.requireNonNull(inicio);
+        if (inicio == null) {
+            inicio = agora;
+        }
 
         inscritos.add(membro);
         return Duration.between(agora, inicio.plus(getDuracao()));
@@ -46,6 +50,24 @@ public class Aula extends Equipamento {
             inicio = null;
             inscritos.clear();
         }
+    }
+
+    @Override
+    public boolean isOcupado() {
+        return isCheio(RelogioSimulado.getTempoAtual());
+    }
+
+    @Override
+    public boolean podeUsar(Membro m) {
+        return super.podeUsar(m) && podeInscrever(m, RelogioSimulado.getTempoAtual());
+    }
+
+    @Override
+    public void usar(Membro m) {
+        LocalDateTime agora = RelogioSimulado.getTempoAtual();
+        Duration restante = inscrever(m, agora);
+        m.registarUso(new Registo(getServico(), this, agora));
+        m.ocuparAte(agora.plus(restante));
     }
 
     //Getters

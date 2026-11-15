@@ -29,7 +29,8 @@ public class DuchePlano implements RegraAcesso {
         return classificar(usos, agora) != Pedido.NEGADO;
     }
 
-    public Duration duration(List <Registo> usos, LocalDateTime agora, Duration duracaoEquipamento) {
+    @Override
+    public Duration duracao(List <Registo> usos, LocalDateTime agora, Duration duracaoEquipamento) {
         return classificar(usos, agora) == Pedido.EXTRA? duracaoExtra : duracaoBase;
     }
 
@@ -62,7 +63,7 @@ public class DuchePlano implements RegraAcesso {
             return  Pedido.EXTRA;
         }
 
-        return bases < duchesPorDia? Pedido.NOVO : Pedido.EXTRA;
+        return bases < duchesPorDia? Pedido.NOVO : Pedido.NEGADO;
     }
 
     private boolean dentroDaJanela(LocalDateTime fimBase, LocalDateTime instante) {

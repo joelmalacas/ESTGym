@@ -18,11 +18,11 @@ public class PorDia implements RegraAcesso {
     public PorDia(int vezes, Duration intervalo) {
         this.vezes = Validator.requirePositiveOrZero(vezes);
         this.intervalo = Objects.requireNonNull(intervalo);
+
     }
 
     @Override
     public boolean permite(List<Registo> usos, LocalDateTime agora) {
-        //TODO METODO (DEPOIS APAGAR FUI EU QUE ESCREVI)
         Objects.requireNonNull(usos);
         Objects.requireNonNull(agora);
 
@@ -43,18 +43,18 @@ public class PorDia implements RegraAcesso {
     }
 
     private boolean respeitaIntervalo(List<Registo> usos, LocalDateTime agora) {
-        if (intervalo == Duration.ZERO || usos.isEmpty()) {
+        if (intervalo.isZero() || usos.isEmpty()) {
             return true;
         }
 
         LocalDateTime ultimoUso = usos.get(usos.size() - 1).getDataHora();
 
-        return !agora.isBefore(ultimoUso.plusMinutes(intervalo.toMinutes()));
+        return !agora.isBefore(ultimoUso.plus(intervalo));
     }
 
     @Override
     public String toString() {
         String texto = vezes + (vezes == 1 ? " vez" : " vezes") + " por dia";
-        return intervalo == Duration.ZERO ? texto : texto + ", " + intervalo + " minutos entre elas";
+        return intervalo.isZero() ? texto : texto + ", " + intervalo.toMinutes() + " minutos entre elas";
     }
 }

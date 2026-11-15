@@ -9,4 +9,9 @@ public class PortaPiscina extends Porta{
     public PortaPiscina(int id, String nome, Servico servico, boolean exigeEntrada , Duration duracao) {
         super(id, nome, servico, exigeEntrada, duracao);
     }
+
+    @Override
+    protected Duration duracaoOcupacao(Duration duracaoServico) {
+        return getDuracao();
+    }
 }

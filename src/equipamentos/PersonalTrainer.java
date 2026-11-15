@@ -10,7 +10,6 @@ import java.util.Objects;
 public class PersonalTrainer extends Equipamento {
 
     public PersonalTrainer(int id, String nome, Servico servico, boolean exigeEntrada, Duration duracao) {
-        //TODO TENHO QUE VERIFICAR ESTE CONSTRUTOR
         super(id, nome, servico, exigeEntrada, duracao);
     }
 }

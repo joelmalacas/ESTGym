@@ -171,6 +171,10 @@ public class JanelaGinasio extends JFrame {
         if (equip.podeUsar(m)) {
             // TODO FEITO se sim usar
             equip.usar(m);
+            Integer selecionado = listaMembros.getSelectedValue();
+            if (selecionado != null) {
+                atualizarTabelas(selecionado);
+            }
             botoes.get(equipamentoId).setEnabled(false);
         } else {
             // senão avisar que não pode usar
@@ -256,7 +260,7 @@ public class JanelaGinasio extends JFrame {
         for (Registo r : membro.getRegistos()) {
             String nome = r.getServico().getNome();
             String descricao =  r.getEquipamento().getNome();
-            LocalDateTime dataUso = RelogioSimulado.getTempoAtual();
+            LocalDateTime dataUso =r.getDataHora();
             modeloUsos.addRow(new Object[] { nome, descricao, dataUso.format(FORMATO_DATA_HORA) });
         }
     }

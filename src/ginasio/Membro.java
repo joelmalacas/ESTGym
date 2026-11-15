@@ -2,6 +2,7 @@ package ginasio;
 
 import pds.util.Validator;
 
+import java.time.LocalDateTime;
 import java.util.*;
 
 public class Membro {
@@ -11,6 +12,7 @@ public class Membro {
     private boolean dentro;
     private final Map<Servico, Contrato> contratos = new LinkedHashMap<>();
     private final List<Registo> registos = new ArrayList<>();
+    private LocalDateTime ocupadoAte;
 
     public Membro(int id, String nome) {
         this.id = Validator.requirePositiveOrZero(id);
@@ -32,6 +34,13 @@ public class Membro {
     }
     public void sair() {
         dentro = false;
+    }
+
+    public boolean estaOcupado(LocalDateTime agora) {
+        return ocupadoAte != null && agora.isBefore(ocupadoAte);
+    }
+    public void ocuparAte(LocalDateTime fim) {
+        this.ocupadoAte = Objects.requireNonNull(fim);
     }
 
     public void adicionarPlano(Plano plano) {

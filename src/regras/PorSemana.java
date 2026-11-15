@@ -14,7 +14,7 @@ import java.util.Objects;
 public class PorSemana implements RegraAcesso {
 
     private final int vezes;
-    private final Duration duracao; // null = sem limite de tempo
+    private final Duration duracao;
 
     public PorSemana(int vezes, Duration d) {
         this.vezes = Validator.requirePositiveOrZero(vezes);
@@ -30,33 +30,30 @@ public class PorSemana implements RegraAcesso {
     }
 
     @Override
+    public Duration duracao(List<Registo> usos, LocalDateTime agora, Duration duracaoEquipamento) {
+        return duracao != null ? duracao : duracaoEquipamento;
+    }
+
+    @Override
     public boolean permite(List<Registo> usos, LocalDateTime agora) {
         Objects.requireNonNull(usos);
         Objects.requireNonNull(agora);
 
-        LocalDate segunda = agora.toLocalDate().with(DayOfWeek.MONDAY);
+        LocalDate hoje = agora.toLocalDate();
+        LocalDate segunda = hoje.with(DayOfWeek.MONDAY);
 
         int total = 0;
-        Duration tempoTotal = Duration.ZERO;
-
         for (int i = usos.size() - 1; i >= 0; i--) {
-            Registo r = usos.get(i);
-
-            if (r.getDataHora().toLocalDate().isBefore(segunda)) {
+            LocalDate dia = usos.get(i).getDataHora().toLocalDate();
+            if (dia.isBefore(segunda)) {
                 break;
             }
-
-            total++;
-            if (duracao != null) {
-                tempoTotal = tempoTotal.plus(r.getServico().getDuracao());
+            if (dia.equals(hoje)) {
+                return false;
             }
+            total++;
         }
-
-        if (total >= vezes) {
-            return false;
-        }
-
-        return duracao == null || tempoTotal.compareTo(duracao) < 0;
+        return total < vezes;
     }
 
     @Override

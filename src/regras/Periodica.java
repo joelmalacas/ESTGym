@@ -18,7 +18,6 @@ public class Periodica implements RegraAcesso {
 
     @Override
     public boolean permite(List<Registo> usos, LocalDateTime agora) {
-        //TODO METODO (DEPOIS APAGAR FUI EU QUE ESCREVI)
         Objects.requireNonNull(usos);
         Objects.requireNonNull(agora);
 

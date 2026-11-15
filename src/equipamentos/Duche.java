@@ -12,11 +12,4 @@ public class Duche  extends Equipamento {
     public Duche(int id, String nome, Servico servico, boolean exigeEntrada) {
         super(id, nome, servico, exigeEntrada, Duration.ZERO);
     }
-
-    public Duration duracaoPara(Membro membro, LocalDateTime agora) {
-        return membro.getContrato(getServico())
-                .orElseThrow(() -> new IllegalStateException(membro.getNome() + " não tem duche no servico"))
-                .getRegra()
-                .duracao(membro.getRegistos(getServico()), agora, getDuracao());
-    }
 }
