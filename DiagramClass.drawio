@@ -1,6 +1,6 @@
-<mxfile host="drawio-plugin" modified="2026-11-14T19:20:53.481Z" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36" etag="PtTyRbCSuX8APTmtlVaO" version="22.1.22" type="embed" pages="3">
+<mxfile host="drawio-plugin" modified="2026-11-15T15:23:30.095Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36" etag="nhkHd2pbRqy5_WLzXewR" version="22.1.22" type="embed" pages="3">
   <diagram name="1 - Dominio" id="t03z5B1iOk417Wg2-giv">
-    <mxGraphModel dx="1366" dy="681" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+    <mxGraphModel dx="1077" dy="771" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -125,7 +125,7 @@
     </mxGraphModel>
   </diagram>
   <diagram name="2 - Regras de acesso" id="1El3Ch82PeVXY2QICk9K">
-    <mxGraphModel dx="1094" dy="681" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+    <mxGraphModel dx="1077" dy="771" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -230,7 +230,7 @@
     </mxGraphModel>
   </diagram>
   <diagram name="3 - Equipamentos" id="aZe5SMXSr24cIKCMYMWk">
-    <mxGraphModel dx="1366" dy="681" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+    <mxGraphModel dx="1267" dy="907" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
