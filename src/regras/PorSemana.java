@@ -42,18 +42,12 @@ public class PorSemana implements RegraAcesso {
         LocalDate hoje = agora.toLocalDate();
         LocalDate segunda = hoje.with(DayOfWeek.MONDAY);
 
-        int total = 0;
-        for (int i = usos.size() - 1; i >= 0; i--) {
-            LocalDate dia = usos.get(i).getDataHora().toLocalDate();
-            if (dia.isBefore(segunda)) {
-                break;
-            }
-            if (dia.equals(hoje)) {
-                return false;
-            }
-            total++;
-        }
-        return total < vezes;
+        List<LocalDate> diasDaSemana = usos.stream()
+                .map(r -> r.getDataHora().toLocalDate())
+                .filter(dia -> !dia.isBefore(segunda))
+                .toList();
+
+        return !diasDaSemana.contains(hoje) && diasDaSemana.size() < vezes;
     }
 
     @Override

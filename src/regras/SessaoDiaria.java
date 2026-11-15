@@ -32,26 +32,14 @@ public class SessaoDiaria implements RegraAcesso {
 
         LocalDate hoje = agora.toLocalDate();
         LocalDate segunda = hoje.with(DayOfWeek.MONDAY);
-        int diasUsados = 0;
-        LocalDate ultimoDia = null;
 
-        for (int i = usos.size() - 1; i >= 0; i--) {
-            LocalDate dia = usos.get(i).getDataHora().toLocalDate();
-            if (dia.isBefore(segunda)) {
-                break;
-            }
+        List<LocalDate> diasUsados = usos.stream()
+                .map(r -> r.getDataHora().toLocalDate())
+                .filter(dia -> !dia.isBefore(segunda))
+                .distinct()
+                .toList();
 
-            if (dia.equals(hoje)) {
-                return false;
-            }
-
-            if (!dia.equals(ultimoDia)) {
-                diasUsados++;
-                ultimoDia = dia;
-            }
-        }
-
-        return diasUsados < dias;
+        return !diasUsados.contains(hoje) && diasUsados.size() < dias;
     }
 
     @Override

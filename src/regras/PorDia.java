@@ -30,26 +30,21 @@ public class PorDia implements RegraAcesso {
     }
 
     private int usosHoje(List<Registo> usos, LocalDate hoje) {
-        int total = 0;
-
-        for (int i = usos.size() - 1; i >= 0; i--) {
-            if (!usos.get(i).getDataHora().toLocalDate().equals(hoje)) {
-                break;
-            }
-
-            total++;
-        }
-        return total;
+        return (int) usos.stream()
+                .filter(r -> r.getDataHora().toLocalDate().equals(hoje))
+                .count();
     }
 
     private boolean respeitaIntervalo(List<Registo> usos, LocalDateTime agora) {
-        if (intervalo.isZero() || usos.isEmpty()) {
+        if (intervalo.isZero()) {
             return true;
         }
 
-        LocalDateTime ultimoUso = usos.get(usos.size() - 1).getDataHora();
-
-        return !agora.isBefore(ultimoUso.plus(intervalo));
+        return usos.stream()
+                .map(Registo::getDataHora)
+                .max(LocalDateTime::compareTo)
+                .map(ultimo -> !agora.isBefore(ultimo.plus(intervalo)))
+                .orElse(true);
     }
 
     @Override

@@ -39,17 +39,16 @@ public class DuchePlano implements RegraAcesso {
         Objects.requireNonNull(agora);
 
         LocalDate hoje = agora.toLocalDate();
+        List<LocalDateTime> iniciosHoje = usos.stream()
+                .map(Registo::getDataHora)
+                .filter(d -> d.toLocalDate().equals(hoje))
+                .toList();
+
         int bases = 0;
         LocalDateTime fimUltimaBase = null;
         boolean extraUsado = true;
 
-        for (Registo r : usos) {
-            LocalDateTime inicio = r.getDataHora();
-
-            if (!inicio.toLocalDate().equals(hoje)) {
-                continue;
-            }
-
+        for (LocalDateTime inicio : iniciosHoje) {
             if (!extraUsado && dentroDaJanela(fimUltimaBase, inicio)) {
                 extraUsado = true;
             } else {
@@ -60,10 +59,10 @@ public class DuchePlano implements RegraAcesso {
         }
 
         if (!extraUsado && dentroDaJanela(fimUltimaBase, agora)) {
-            return  Pedido.EXTRA;
+            return Pedido.EXTRA;
         }
 
-        return bases < duchesPorDia? Pedido.NOVO : Pedido.NEGADO;
+        return bases < duchesPorDia ? Pedido.NOVO : Pedido.NEGADO;
     }
 
     private boolean dentroDaJanela(LocalDateTime fimBase, LocalDateTime instante) {
